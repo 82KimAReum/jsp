@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="City">
+
+  <!-- Use type aliases to avoid typing the full classname every time. -->
+  <typeAlias alias="City" type="com.javasoft.libs.models.CityVO"/>
+
+  <resultMap id="CityResult" class="City">
+    <result property="id" column="ID"/>
+    <result property="name" column="Name"/>
+    <result property="countryCode" column="CountryCode"/>
+    <result property="district" column="District"/>
+    <result property="population" column="Population"/>
+  </resultMap>
+ <!--  <resultMap id="CountrycodeResult" class="City">  
+    <result property="countryCode" column="CountryCode"/>
+  </resultMap> -->
+
+  <!-- Select with no parameters using the result map for Account class. -->
+  <select id="selectAllCities" resultMap="CityResult" parameterClass="java.lang.String">
+    select id,name,countrycode,district,population from city
+    where countrycode=#countrycode#
+  </select>
+  <select id="selectAllCountrycode" resultClass="String">
+    select distinct countrycode
+    from city
+  </select>
+
+
+</sqlMap>

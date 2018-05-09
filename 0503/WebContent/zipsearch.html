@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>우편번호 검색</title>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		$('#btnZipSearch').bind('click',function(){
+			window.open('zipsearch.jsp','_blank','width=600,height=200');
+		})
+	})
+</script>
+</head>
+<body>
+	<ul style="list-style-type:none">
+		<li>우편번호 :<input type="text" id="zip1" size="5" readonly /> 
+			- <input type="text" id="zip2" size="5" readonly /><input type="button" value="우편번호 검색" id="btnZipSearch"/> </li>
+		<li>기본주소 :<input type="text" id="address1" size="30" readonly /></li>
+		<li>상세주소 :<input type="text" id="address2" size="20" /> </li>
+	</ul>
+</body>
+</html>
