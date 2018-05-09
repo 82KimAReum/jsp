@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>Welcome Javasoft Company</title>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		var str = null;
+		function myopen(empno){
+			var evt = window.event;
+			window.open("detail.html?empno=" + empno, "_blank", 
+					"width=400, height=500, left=" + evt.screenX + ",top=" + evt.screenY);
+		}
+		$(function(){
+			$.get("select.jsp", function(data){
+					var obj = JSON.parse(data);
+					var data = obj.data;
+					str = displayHeader();
+					str += "<tbody>";
+					for(var i = 0 ; i < data.length ; i++){
+						str += "<tr>";
+						str += "<td><a href='javascript:void(0)' onclick='myopen(" + 
+								data[i].empno + ")'>" + data[i].empno + "</a></td>";
+						str += "<td>" + data[i].ename + "</td>";
+						str += "<td>" + data[i].hiredate + "</td>";
+						str += "<td>" + data[i].deptno + "</td>";
+						str += "</tr>";
+					}
+					str += "</tbody></table>";   
+					$('#result').html(str);
+				});
+		});
+		function displayHeader(){
+			str = "<table border='1'>" +
+			         "<thead><tr><th>사번</th><th>이름</th>" +
+			         "<th>입사일자</th><th>부서번호</th></tr></thead>";
+			return str;
+		}
+	</script>
+	</head>
+	<body>
+		<h1>Javasoft's Employee List</h1>
+		<div id="result"></div>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function view(opt) {
+  if(opt) {
+       spec1.style.display = "block";
+  }
+  else {
+     spec1.style.displayspec1.style.display = "none";
+
+     spec1.style.display = "none";  //마우스아웃시 닫힘
+  }
+}
+</script>
+</head>
+<body>
+<a href="#" onmouseover="view(true)" onmouseout="view(false)" style="text-decoration:none; ">
+가나다라마바사
+</a>
+<div id="spec1" style="position:relative;display:none;">
+마우스 오버해보세요.
+</div>
+</body>
+</html>

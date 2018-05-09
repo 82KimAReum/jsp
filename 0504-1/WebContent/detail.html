@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		//alert(window.location.search.substring(1));
+		var empno=window.location.search.substring(1).split("=")[1];//empno의 detail정보
+		//$.get("detail.jsp?empno=",empno);
+		$.post("detail.jsp",{empno:empno},function(data){
+			
+			var obj=JSON.parse(data);
+			var data=obj.data
+			var str="<ul>";
+			for(var key in data){
+				str+="<li>"+key+" : "+data[key]+"</li>"
+			}
+				
+			
+			str+="</ul>";
+
+			$('#ename').html(data.ename);
+			$('#result').html(str);
+		});
+		
+	});
+</script>
+</head>
+<body>
+	<h1><span id="ename"></span>'s Information</h1>
+	<div id="result"></div>
+	<button onclick="javascript:window.close();">Close</button>
+	
+	
+</body>
+</html>
