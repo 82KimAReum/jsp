@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+</head>
+<body>
+	<form method='post' action="register.jsp">
+		<ul>
+			<li>Name:<input type="text" name="username"></li>
+			<li>age:<input type="number" name="userage"></li>
+			<li>phone:<input type="tel" name="usertel"></li>	
+			<li>Gender:<input type="radio" name="gender" value="male">남성	
+				<input type="radio" name="gender" value="female">여성	</li>	
+			<li>
+			Languages:<br><input type="checkbox" name="hobby" value="C++">C++<br>
+			<input type="checkbox" name="hobby" value="C#">C#<br>
+			<input type="checkbox" name="hobby" value="Java">Java+<br>
+			<input type="checkbox" name="hobby" value="Python">Python<br>
+			<input type="checkbox" name="hobby" value="JavaScript">JavaScript<br>	
+			<input type="checkbox" name="hobby" value="Ruby">Ruby<br>
+			</li>
+		</ul>
+		<input type='submit' value='회원가입'>
+	</form>
+</body>
+</html>
