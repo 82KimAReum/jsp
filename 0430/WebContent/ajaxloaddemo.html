@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax Load Demo</title>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		$('#txtName').bind('blur',function(){
+			$('#result').load("date.jsp");
+			//span이나 div 태그에 한해서 서버의 data를 바로 html tag 안에 넣을 수 있음
+			
+		})
+	})
+</script>
+</head>
+<body>
+	Name: <input type="text" id="txtName" size="40"><br>
+	Now: <sapn id="result"></sapn>
+</body>
+</html>

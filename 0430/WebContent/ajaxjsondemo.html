@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>getJson() Demo</title>
+<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			$("button").click(function(){
+				$.getJSON("test.json",function(data){
+					var str = "<ul>";
+					$.each( data, function( key, val ) {
+						str+="<li>"+key+"-->"+val+"</li>";
+					});
+					str+= "</ul>";
+					$("#result").html(str);
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<button type="button">get data</button>
+	<div id="result"></div>
+</body>
+</html>

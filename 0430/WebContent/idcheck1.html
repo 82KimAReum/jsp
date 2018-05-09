@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>중복검사 </title>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		$('#userid').bind('change',function(){
+			$.post("idcheck.jsp",
+					{userid:$('#userid').val().trim()},
+					function(data){
+						if(data.code=="success"){
+							if(data.result== "true"){
+								msg="<span color='red'>이미 사용중 </span>"
+							}else{
+								msg="<span color='green'>사용가능 </span>"
+							}
+							$('#result').html(msg);
+						}
+					},"json");
+		})
+	})
+</script>
+</head>
+<body>
+	user id:<input type ="text" id="userid"><span id="result"></span>
+</body>
+</html>

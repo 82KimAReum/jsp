@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ajax param demo</title>
+		<script src="js/jquery-1.12.4.js"></script>
+		<script>
+			$(function(){
+				$('#txtPhone').bind("blur", function(){
+					var name = $('#txtName').val();
+					var age = $('#txtAge').val();
+					var phone = $('#txtPhone').val();
+					//1st방법
+					/* var url = "test.jsp?name=" + name + 
+							    "&age=" + age + "&phone=" + phone; 
+					$('#result').load(url);*/
+					//2st방법// $.param()을 이용
+					/* var data={name:name,age:age,phone:phone};
+					var param=$.param(data);
+					$('#result').load("test.jsp",param); */
+					//3st방법 //데이터를 직접 .load에 넣는 방법
+					 var data={name:name,age:age,phone:phone};
+					 $('#result').load("test.jsp",data);
+				});
+			});
+		</script>
+	</head>
+	<body>
+		Name : <input type="text" id="txtName" /><br />
+		Age : <input type="number" id="txtAge" /><br />
+		Phone :  <input type="tel" id="txtPhone" /><br />
+		<div id="result"></div>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>param demo</title>
+		<script src="js/jquery-1.12.4.js"></script>
+		<script>
+			$(function(){
+				$('form').submit(function(){
+					event.preventDefault();//지우고 새로 그리지 마
+					$('#result').load("test.jsp",$(this).serialize());
+					//form의 내용이 인코딩(.serialize)되서 서버(test.jsp)에 전송됨
+					//일반적 form은 전송하면 form의 내용이 지워지고 새로 그려짐
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<form>
+			Name : <input type="text"  name="name"/><br />
+			Age : <input type="number"  name="age"/><br />
+			Phone :  <input type="tel"  name="phone"/><br />
+			<input type="submit" value="전송">
+		</form>
+		<div id="result"></div>
+	</body>
+</html>

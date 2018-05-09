@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>전자신문 오늘의 기사 서비스</title>
+		<script>
+			window.addEventListener('load', setup, false);
+			function setup(){
+				document.getElementsByTagName("button")[0]
+					.addEventListener('click', getData, false);
+			}
+			function getData(){
+				var obj = new XMLHttpRequest();
+				obj.open("get", "http://rss.etnews.com/Section901.xml", true);
+				obj.onreadystatechange = function(){
+					if(obj.readyState == 4 && obj.status == 200){
+						alert(obj.responseXML);
+					}
+				}//권한 문제로 실행 할수 없음 
+				
+				obj.send(null);
+			}
+		</script>
+	</head>
+	<body>
+		<button type='button'>Get Data</button>
+	</body>
+</html>

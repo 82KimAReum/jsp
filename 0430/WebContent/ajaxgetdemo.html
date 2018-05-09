@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax Get Demo</title>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		$('#txtResult').bind('blur',function(){
+			$.get("date.jsp",function(data){			
+				$('#txtResult').val(data);
+			})
+		})
+	})
+</script>
+</head>
+<body>
+	<input type="text" id="txtResult" size="40">
+</body>
+</html>

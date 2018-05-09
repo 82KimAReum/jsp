@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘의 뉴스 서비스</title>
+		<style type="text/css">
+			table{
+				width:100%; border-collapse:collapse;
+				border:1px solied #000;
+			}
+			th,td{
+				
+				border:1px solied #000;
+			}
+			th{
+				background-color:navy;
+				color:white;
+			}
+			th:nth-of-type(1){width:5%}
+			th:nth-of-type(2){width:25%}
+			th:nth-of-type(3){width:50%}
+			th:nth-of-type(4){width:10%}
+			th:nth-of-type(5){width:10%}
+			
+			table tr td:nth-of-type(1){
+				text-align:center;
+			}
+		</style>
+		<script src="js/jquery-1.12.4.js"></script>
+		<script>
+		var str= null;
+		function displayHead(company){
+			str="<h2 style='text-align:center'>["+company+"]의 오늘의 뉴스</h2>"
+			str+="<table border='1'>";
+			str+="<thead><tr><th>번호</th><th>제목</th><th>기사내용</th><th>기자명</th><th>게시날짜</th></tr></thead><tbody>"
+			//$('#result').html(str);
+		}
+			$(function(){
+				$('#selNews').change(function(){
+					displayHead($(":selected").text());
+					$.ajax({
+						url : 'newspaper.jsp?url=' + $('#selNews').val(),
+						type : 'get',
+						dataType : 'xml',
+						success : function(xml){
+							var array= xml.getElementsByTagName("item");
+							//alert(array.length);
+							for(var i=0; i<array.length; i++){
+								var item=array.item(i);
+								str +="<tr>";
+								str +="<td>"+(i+1)+"</td>";
+								var title=item.getElementsByTagName("title")[0].firstChild.nodeValue;
+								str += "<td>" + title.substring(0, 10) + "..." + "</td>";
+								var description=item.getElementsByTagName("description")[0].firstChild.nodeValue;
+								str += "<td>" + title.substring(0, 25) + "..." + "</td>";
+								var author=item.getElementsByTagName("author")[0].firstChild.nodeValue;
+								str += "<td>" + author + "</td>";
+								var pubDate=item.getElementsByTagName("pubDate")[0].firstChild.nodeValue;
+								str += "<td>" + pubDate + "</td>";
+								str +="</tr>";
+							}
+							$('#result').html(str);
+						},
+						error : function(err){
+							alert("난에러야");
+						}
+					});
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<h1>아래의 신문사를 선택해 주세요.</h1>
+		<select id="selNews">
+			<option>--신문사선택--</option>
+			<option value="http://rss.etnews.com/Section901.xml">전자신문</option>
+			<option value="http://myhome.chosun.com/rss/www_section_rss.xml">조선일보</option>
+			<option value="http://www.hani.co.kr/rss/lead/">한겨레신문</option>
+			<option value="http://rss.ohmynews.com/rss/top.xml">오마이뉴스</option>
+			<option value="http://rss.hankooki.com/daily/dh_main.xml">한국일보</option>
+			<option value="http://rss.joins.com/joins_homenews_list.xml">중앙일보</option>
+		</select>
+		<div id="result"></div>
+	</body>
+</html>
+
+
