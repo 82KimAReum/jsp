@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- <script>
+ 	window.addEventListener('load', setup, false);
+	function setup(){
+		document.getElementsByName("myweb")[0].addEventListener(
+				              'change', MyChange, false);
+	}
+	function MyChange(){
+		var idx = this.selectedIndex;
+		window.location.href = this.options[idx].value;
+	} 
+</script> -->
+</head>
+<body>
+	<h1>원하시는 페이지를 요청해 주세요.</h1>
+	<form action="/0423/responsedemo.jsp" method="post">
+		<select name="myweb" onchange="this.form.submit()">
+			<option>--선택--</option>
+			<option value="https://www.google.com">Google</option>
+			<option value="https://www.naver.com">Naver</option>
+			<option value="https://www.daum.net">Daum</option>
+			<option value="http://www.nate.com">Nate</option>
+			<option value="https://www.w3schools.com/">W3Schools.com</option>
+			<option value="http://www.apache.org/">Apache Foundation</option>
+		</select>
+	</form>
+</body>
+</html>
