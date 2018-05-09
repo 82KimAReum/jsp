@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<taglib version="2.0" 
+xmlns="http://java.sun.com/xml/j2ee" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">
+
+
+  <description>JSP custom Tag 1.2 Demo </description><!-- not required -->
+  <tlib-version>1.0.0</tlib-version><!-- required -->
+  <short-name>aaa</short-name><!-- required -->
+  <tag>
+  	<description>red color로 Hello, world 출력하는 Tag</description>
+  	<name>bbb</name><!-- required -->
+    <tag-class>com.javasoft.libs.HelloWorld1</tag-class><!-- required -->
+    <body-content>empty</body-content><!-- empty|JSP -->
+  </tag>
+
+	<tag>
+		<description>현재시간을 표시하는 tag</description>
+	  	<name>ddd</name><!-- required -->
+	    <tag-class>com.javasoft.libs.MyTime</tag-class><!-- required -->
+	    <body-content>empty</body-content><!-- empty|JSP -->
+	</tag>
+	
+	<tag>
+		<description>현재시간을 나라별로 표시하는 tag</description>
+	  	<name>mydate</name><!-- required -->
+	    <tag-class>com.javasoft.libs.MyDate</tag-class><!-- required -->
+	    <body-content>empty</body-content><!-- empty|JSP -->
+	    <attribute>
+      		<name>type</name>
+      		<required>true</required><!-- 필수 여부 true|false-->
+      		<rtexprvalue>true</rtexprvalue><!-- runtime으로 들어오는가의 여부 -->
+      		
+    	</attribute>
+	</tag>
+	
+	<tag>
+		<description>body도있고 속성도 있는 태그</description>
+	  	<name>mybody</name><!-- required -->
+	    <tag-class>com.javasoft.libs.MyBody</tag-class><!-- required -->
+	    <body-content>JSP</body-content><!-- empty|JSP -->
+	    <attribute>
+      		<name>type</name>
+      		<required>true</required><!-- 필수 여부 true|false-->
+      		<rtexprvalue>true</rtexprvalue><!-- runtime으로 들어오는가의 여부 -->
+      		
+    	</attribute>
+	</tag>
+
+</taglib>

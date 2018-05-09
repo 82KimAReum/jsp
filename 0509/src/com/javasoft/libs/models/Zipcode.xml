@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="Zipcode">
+
+	<resultMap type="ZipcodeVO" id="MyMap">
+		<result property="zipcode" column="zipcode"/>
+		<result property="sido" column="sido"/>
+		<result property="gugun" column="gugun"/>
+		<result property="dong" column="dong"/>
+		<result property="bunji" column="bunji"/>
+		
+	</resultMap>
+
+	<parameterMap type="hashMap" id="zipcodeMap">
+		<parameter property="dongname" mode="IN" javaType="String" jdbcType="VARCHAR"/>
+		<parameter property="results" mode="OUT" javaType="ResultSet" jdbcType="CURSOR" resultMap="MyMap"/>
+	</parameterMap>
+	<select id="selectZipcode" parameterMap="zipcodeMap" statementType="CALLABLE">
+		{ call sp_zipcode_select(?,?)}
+	</select>
+	
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<taglib version="2.0" 
+	xmlns="http://java.sun.com/xml/j2ee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">
+	
+	<description>JSP Custom Tag 1.2 Demo</description><!-- not required -->
+	<tlib-version>1.1.0</tlib-version>   <!--  required -->
+  	<short-name>mylib</short-name>  <!--  required -->
+  	 	
+  	<tag>
+  		<description>MyBatis를 이용한 우편번호 검색 태그</description>
+  		<name>zipsearch</name>   <!-- required -->
+    	<tag-class>com.javasoft.libs.ZipSearch</tag-class> <!-- required -->
+    	<body-content>empty</body-content> <!-- empty | JSP -->
+    	<attribute>
+    		<name>key</name>
+    		<required>true</required> <!-- 필수 여부, true | false -->
+    		<rtexprvalue>true</rtexprvalue>
+    	</attribute>
+  	</tag>
+  	
+  	
+  	
+  	
+  	
+</taglib>
