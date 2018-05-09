@@ -1,0 +1,35 @@
+h1{
+   text-decoration-line: underline;
+   text-align: center;
+
+}
+#outline{
+    text-align: right; 
+   width:700px;
+   margin:auto;
+}
+table{
+   width: 500px;
+   margin-left:auto;
+   margin-right:auto;  
+   line-height: 30px;
+}
+p{ 
+  
+  
+   text-align: center;
+}
+hr{
+   border-width:5px;
+   border-color: black;
+}
+.head{
+background-color: black;
+color: white;
+text-align: center;
+}
+.thead{
+line-height: 30px;
+width: 400px;
+float: left;
+}

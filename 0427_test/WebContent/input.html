@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>사원관리프로그램</title>
+    <link rel='stylesheet' href='css/indexStyle.css' type="text/css">
+    <script src='js/main.js'></script>
+    <script src='js/main1.js'></script>
+    <script src='js/employee.js'></script>
+    <script src='js/input.js'></script>
+    <script src='js/sort.js'></script>
+    <script src='js/calc.js'></script>
+    <script src='js/output.js'></script>
+</head>
+<body>
+    <h1>사원관리프로그램</h1>
+    <div id='outline'>
+        <div>*필수입력항목</div>
+        <hr/>
+        <table>
+            <form action="/0427_test/input.jsp" method="post">
+            <tr>
+                <td class="head" name='id'>사번: </td>
+                <td><input class="thead"type="text"id='txtId'name='txtId'> *</td>
+            </tr>
+            <tr>
+                <td class="head"name='name'>호봉: </td>
+                <td><input class="thead"type="number"id='txtHo'name='txtHo'> *</td>
+            </tr>
+            <tr>
+                <td class="head"name='pay'>야근시간: </td>
+                <td><input class="thead"type="number"id='txtYa'name='txtYa'> * </td>
+            </tr>
+            <tr>
+                <td class="head"name='time'>부양가족수: </td>
+                <td><input class="thead"type="number"id='txtBu'name='txtBu'> * </td>
+            </tr>
+            <tr>
+                <td><input type="submit"value='입력하기'id='btnInput'></td>
+				<td><input type="reset"value='취소하기'id='btnReset'></td>
+            </tr>
+            </form>
+        </table>
+        <hr/>
+       
+    </div>
+ 
+</body>
+</html>
