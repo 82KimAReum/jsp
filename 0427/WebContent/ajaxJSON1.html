@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSON data</title>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function (){
+		$("input[type='button']").bind('click',function(){
+			$.ajax({
+				url:"sungjuk_utf8.json",
+				type:'get',
+				dataType:'json',
+				success:function(data){//obj.responseXML
+					data=data.students
+					var str= "<h1>Informatin</h1><ul>";
+					for (var i=0 ; i< data.length ; i++){
+					
+					str +="<li>학번:"+data[i].hakbun+" "+data[i].irum+" "
+						+data[i].kor+" "+data[i].eng+" "+data[i].mat+" "+data[i].edp+"</li>";
+					
+					}
+					str +="</ul>";
+					$('#result').html(str);
+					
+				},
+				error:function(err){
+					alert(err);
+				}
+			})
+		})
+	})
+</script>
+</head>
+<body>
+	<input type='button' value='get Data'/>
+	<div id='result'></div>
+</body>
+</html>

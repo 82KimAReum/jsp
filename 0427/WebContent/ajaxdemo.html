@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax Demo</title>
+<script>
+	window.addEventListener("load",setup,false);
+	function setup(){
+		document.getElementById("txtDate").addEventListener("blur",MyAjax,false);
+	}
+	var obj=null;
+	function MyAjax(){
+		obj=new XMLHttpRequest();//1.
+		obj.open("get","date.jsp",true);//2.비동기
+		obj.onreadystatechange =function(){
+			if(obj.readyState ==4 && obj.status ==200){//갔다왔니? , 정상이었니?
+				document.getElementById("txtDate").value =obj.responseText;
+			}
+		}
+		obj.send(null); //3.
+	}
+	
+</script>
+</head>
+<body>
+	<h1>Ajax Demo</h1>
+	Message from Server: <input type="text" id="txtDate" size="40" name="" />
+</body>
+</html>

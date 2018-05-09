@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	window.addEventListener("load",setup,false);
+	function setup(){
+		document.getElementById("txtResult").addEventListener("focus",MyAjax,false);
+	}
+	var obj=null;
+	function MyAjax(){
+		obj=new XMLHttpRequest();//1.
+		var param="first="+document.getElementById("txtFirst").value+
+		"&second="+document.getElementById("txtSecond").value+
+		"&op="+document.getElementById("op").value;
+		/* obj.open("get","calc.jsp?"+param,true);//2.비동기
+		obj.onreadystatechange =Result;
+		obj.send(null); //3. */
+		obj.open("POST","calc.jsp",true);
+		obj.onreadystatechange =Result;
+		obj.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+		obj.send(param);
+		
+	}
+	function Result(){
+		if(obj.readyState ==4 && obj.status ==200){//갔다왔니? , 정상이었니?
+			document.getElementById("txtResult").value =obj.responseText;
+		}
+	}
+	
+</script>
+</head>
+<body>
+	First:<input type="number" id="txtFirst" style="width: 3em" />
+	<select id="op">
+		<option>선택</option>
+		<option value="add">+</option>
+		<option value="sub">-</option>
+		<option value="mul">x</option>
+		<option value="div">/</option>
+		<option value="mod">%</option>
+	</select>
+	
+	Second:<input type="number" id="txtSecond" style="width: 3em" /><br>
+	Result: <input type="text" id="txtResult" style="width: 3em"  />
+	
+</body>
+</html>

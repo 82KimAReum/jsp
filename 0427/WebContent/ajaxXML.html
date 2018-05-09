@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="js/jquery-1.12.4.js"></script>
+		<script>
+			$(function(){
+				$('button').click(function(){
+					$.ajax({
+						url : 'books.xml',
+						type : 'GET',
+						dataType : 'xml',
+						success : function(data){
+							xmldoc = data;
+							var books = xmldoc.getElementsByTagName('book');
+							var str = "<ul>";
+							for(var i = 0 ; i < books.length ; i++){
+								var book = books.item(i);
+								
+								var title = book.getElementsByTagName('title')[0];
+								
+								title = title.firstChild.nodeValue;
+								var author = book.getElementsByTagName('author')[0];
+								author = author.firstChild.nodeValue;
+								str += "<li>" + title + "(" + author + ")</li>";
+							}
+							str += "</ul>";
+							$('#result').html(str);
+						},
+						error : function(err){
+							alert(err);
+						}
+					});
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<button>Get Data</button><br />
+		<div id='result'></div>
+	</body>
+</html>

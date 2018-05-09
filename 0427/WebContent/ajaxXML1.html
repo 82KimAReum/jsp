@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>성적 데이터</title>
+		<script src="js/jquery-1.12.4.js"></script>
+		<script>
+			$(function(){
+				$("input[type='button']").click(function(){
+					$.ajax({
+						url : 'sungjuk_utf8.xml',
+						type : 'GET',
+						dataType : 'xml',
+						success : function(data){
+							displayData(data);
+						},
+						error : function(err){
+							alert(err);
+						}
+					});
+				});
+			});
+			function displayData(data){
+				var str = "<h2>성적 데이터(xml)</h2>";
+				str += "<table border='1'>" +
+				            "<thead><tr><th>학번</th><th>이름</th><th>국어</th>" +
+				            "<th>영어</th><th>수학</th><th>전산</th></tr></tbody>" +
+				            "<tbody>";
+				var students = data.getElementsByTagName('student');
+				for(var i = 0 ; i < students.length ; i++){
+					str += "<tr>";
+					var student = students.item(i);
+					str += "<td>" + student.getAttribute('hakbun') + "</td>";
+					str += "<td>" + student.getElementsByTagName('irum')[0].firstChild.nodeValue + "</td>";
+					str += "<td>" + student.getElementsByTagName('kor')[0].firstChild.nodeValue + "</td>";
+					str += "<td>" + student.getElementsByTagName('eng')[0].firstChild.nodeValue + "</td>";
+					str += "<td>" + student.getElementsByTagName('mat')[0].firstChild.nodeValue + "</td>";
+					str += "<td>" + student.getElementsByTagName('edp')[0].firstChild.nodeValue + "</td>";
+					str += "</tr>";
+				}        
+				str += "</tbody></table>";
+				$('#result').html(str);
+			}
+		</script>
+	</head>
+	<body>
+		<input type='button' value="Get Data" /><br />
+		<div id='result'></div>
+	</body>
+</html>

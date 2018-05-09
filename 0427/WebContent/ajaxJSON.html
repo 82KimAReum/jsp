@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSON data</title>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function (){
+		$("input[type='button']").bind('click',function(){
+			$.ajax({
+				url:"jsondemo.jsp",
+				type:'get',
+				dataType:'json',
+				success:function(data){//obj.responseXML
+					//alert(data.data.member.irum)//success
+					var str= "<h1>Meber Informatin</h1><ul>";
+					str +="<li>이름:"+data.data.member.irum+"</li>";
+					str +="<li>나이:"+data.data.member['age']+"</li>";
+					str +="<li>주소:"+data.data.member.address+"</li>";
+					str +="</ul>";
+					$('#result').html(str);
+					
+				},
+				error:function(err){
+					alert(err);
+				}
+			})
+		})
+	})
+</script>
+</head>
+<body>
+	<input type='button' value='get Data'/>
+	<div id='result'></div>
+</body>
+</html>
