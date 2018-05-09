@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/input.css" />
+<script src="js/input.js"></script>
+<title>사원 봉급 정보 입력창</title>
+</head>
+<body>
+	<h1>사원 봉급 정보 입력</h1>
+	<hr />
+	<form action="input.jsp" method="post">
+	<table>
+	<tr>
+		<th>사번 :</th>
+		<td><input type="text" id="sabun" name="sabun"  placeholder="A209" required></td>
+	</tr>
+	<tr>
+		<th>호봉 : </th>
+		<td><input type="text" id="hobong" name="hobong"  placeholder="1~9" required></td>
+	</tr>
+	<tr>
+		<th>야근시간 : </th>
+		<td><input type="text" id="night" name="night"  placeholder="0~10" required></td>
+	</tr>
+	<tr>
+		<th>부양가족수 : </th>
+		<td><input type="text" id="family" name="family"   placeholder="0~10" required></td>
+	</tr>
+	</table>
+	<table>
+	<tr>
+		<td colspan="2">
+		<input type="submit" value="입력하기"  id="btn">&nbsp;&nbsp;
+		<input type="reset" value="취소하기">
+		</td>
+	</tr>
+	</table>
+	</form>
+</body>
+</html>

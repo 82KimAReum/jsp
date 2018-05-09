@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8">
+		<title>사원 봉급 정보 출력창</title>
+		<link rel="stylesheet" href="css/style.css">
+		<script src="js/jquery-1.12.4.js"></script>
+		<script>
+			$(function(){
+				$.get("index.jsp", function(data){
+					var obj = JSON.parse(data);
+					var count = obj.data.length;
+					var str = "[" + count + "명 데이터]";
+					$(".bg1").text(str);
+					str = "";
+					for(var i = 0 ; i < count ; i++){
+						str += "<tr>";
+						//var item=obj.data[i]
+						for(key in obj.data[i]){			
+							str += "<td>" + obj.data[i][key] + "</td>" ;						
+						}
+						str += "</tr>";
+					}
+					$('#result').html(str);
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<h1>사원 봉급 정보 리스트</h1>
+		<p></p>
+		<table>
+			<tr>
+				<td><a href="input.html">입력하기</a></td>
+				<td><span class="bg1"></span></td>
+			</tr>
+		</table>
+		<table>
+			<thead>
+				<tr>
+					<th>사번</th><th>부서</th><th>기본급</th>
+					<th>직무급</th><th>야근수당</th><th>가족수당</th>
+					<th>총지급액</th><th>소득세</th><th>실수령액</th>
+				</tr>
+			</thead>
+			<tbody id="result">
+			</tbody>
+		</table>
+	</body>
+</html>

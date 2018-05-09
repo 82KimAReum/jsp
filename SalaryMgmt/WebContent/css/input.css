@@ -1,0 +1,45 @@
+@CHARSET "UTF-8";
+h1 { 
+	text-align:center;
+	width:400px;
+	margin-left:auto;
+	margin-right:auto;	
+}
+hr {  
+	  width:60%; 
+      border-width:1px;
+      border-color:#ff0000;
+}
+table {
+	 padding:3px;
+	 border-collapse:separate;
+	 border-spacing:3px;
+	 width:500px;
+	 height:35%;
+	 margin-left:auto;
+	 margin-right:auto;
+	 margin-top:50px;
+}
+th{
+	 background-color : blue;
+	 text-align:right;
+	 width:300px;
+	 font-size:1.5em;
+	 color:#ffffff;
+}
+td{
+	text-align:left;
+}
+table:last-child td{
+	text-align:center;
+}
+input[type="text"] {
+	font-size : 1.5em;
+	background-color : yellow
+}
+input[type="submit"], input[type="reset"]{
+	background-color : #99cc00;
+	color:#9900ff;
+	font-weight:900;
+	font-size:1.5em;
+}

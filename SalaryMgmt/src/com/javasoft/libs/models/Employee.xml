@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="com.javasoft.libs.models.EmployeeDTO">
+	<resultMap type="Employee" id="selectAllMap">
+		<result property="sabun" column="sabun"/>
+		<result property="department" column="dname"/>
+		<result property="gibon" column="gibon"/>
+		<result property="money" column="money"/>
+		<result property="nightmoney" column="nightmoney"/>
+		<result property="familymoney" column="familymoney"/>
+		<result property="salary" column="salary"/>
+		<result property="tax" column="tax"/>
+		<result property="sum" column="sum"/>
+	</resultMap>
+
+	<select id="selectAll" resultMap="selectAllMap">
+		SELECT sabun, dname, gibon, money, nightmoney, 
+	            familymoney, salary, tax, sum
+		FROM Employee, Department
+		WHERE Employee.code = Department.code
+		ORDER BY sum DESC
+	</select>
+	
+	<select id="getMoney" parameterType="int" resultType="int">
+		SELECT money FROM salgrade
+		WHERE grade = #{grade}
+	</select>
+	
+	<select id="getDname" parameterType="java.lang.Character" resultType="String">
+		SELECT dname FROM Department
+		WHERE code = #{code}
+	</select>
+	
+	<insert id="insertEmployee" parameterType="Employee">
+		INSERT INTO Employee VALUES(#{sabun},#{hobong},#{night},
+		#{family},#{gibon},#{money},#{nightmoney},#{familymoney},
+		#{salary},#{tax},#{sum},#{code})
+	</insert>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>
