@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Employee">
+
+  <!-- Use type aliases to avoid typing the full classname every time. -->
+  <typeAlias alias="Employee" type="com.javasoft.libs.models.EmployeeDTO"/>
+
+  <resultMap id="empResult" class="Employee">
+    <result property="empno" column="empno"/>
+    <result property="ename" column="ename"/>
+    <result property="hiredate" column="hiredate"/>
+    <result property="deptno" column="deptno"/>
+    
+  </resultMap>
+ 
+  <select id="selectAll" resultMap="empResult">
+    select empno,ename,hiredate,deptno  
+    from emp
+    order by empno desc
+  </select> 
+
+
+</sqlMap>
