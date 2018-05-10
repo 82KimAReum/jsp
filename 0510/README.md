@@ -4,13 +4,13 @@ IDE:eclipse-jee-oxygen
 # jsp2.0혹은 그 아상 버전에서의 custom tag생성
 
 body & attribute 없음
--customtagdemo.jsp
+- customtagdemo.jsp
 
 body 없고  attribute 있는경우
--customtagdemo1.jsp
+- customtagdemo1.jsp
 
 body &  attribute 있는경우
--customtagdemo2.jsp
+- customtagdemo2.jsp
 
 
 
