@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="City">
+	
+	<resultMap type="CityVO" id="selectMap">
+		<result property="id" column="ID"/>
+		<result property="name" column="Name"/>
+		<result property="countryCode" column="CountryCode"/>
+		<result property="district" column="District"/>
+		<result property="population" column="Population"/>
+		
+	</resultMap> 
+	
+	
+	
+	<select id="selectCountryCode" resultMap="selectMap">
+	{ call sp_select_countrycode}
+	</select>
+	
+	<parameterMap type="hashMap" id="cityMap">
+		<parameter property="countryCode" mode="IN" javaType="String" jdbcType="CHAR"/>
+	</parameterMap>
+	<select id="selectCity" parameterMap="cityMap" statementType="CALLABLE" resultMap="selectMap">
+	{ call sp_select_city(?)}
+	</select>
+	
+</mapper>

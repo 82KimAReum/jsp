@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>0510</display-name>
+  <servlet>
+    <servlet-name>Hello</servlet-name>
+    <servlet-class>com.javasoft.libs.HelloServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Hello</servlet-name>
+    <url-pattern>/servlets/servlet/Hello</url-pattern>
+  </servlet-mapping>
+  
+  <filter>
+  	<filter-name>MyFilter</filter-name>
+  	<filter-class>com.javasoft.filters.MyFilter</filter-class>
+  </filter> 
+  <filter>
+  	<description>로그인 체크하는 필터</description>
+  	<filter-name>LoginCheckFilter</filter-name>
+  	<filter-class>com.javasoft.filters.LoginCheckFilter</filter-class>
+  </filter>
+  
+  
+  <filter-mapping>
+  	<filter-name>MyFilter</filter-name>
+  	<servlet-name>Hello</servlet-name><!-- 대상이 servlet일때 -->
+  	<url-pattern>*.jsp</url-pattern> <!-- filter의 대상이jsp파일일때 -->
+  </filter-mapping> 
+  <filter-mapping>
+  	<filter-name>LoginCheckFilter</filter-name>
+  	<url-pattern>/member/*</url-pattern>
+  </filter-mapping>
+  
+</web-app>
