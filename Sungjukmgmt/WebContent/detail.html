@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>성적 정보 창</title>
+    	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			var hakbun=location.search.substring(1).split("=")[1];
+			$('#btnDelete').bind("click",function(){	
+				if(confirm("정말 삭제??")){
+					location.href="delete.jsp?hakbun="+hakbun;
+				}
+			});
+			
+			$.get("detail.jsp",{hakbun:hakbun}, function(data){
+				var obj=JSON.parse(data);
+				var student=obj.data;
+				$('#stuIrum').text(student.irum);
+				$('#hakbun').val(student.hakbun);
+				$('#irum').val(student.irum);
+				$('#kor').val(student.kor);
+				$('#eng').val(student.eng);
+				$('#mat').val(student.mat);
+				$('#edp').val(student.edp);
+				$('#sum').val(student.sum);
+				$('#avg').val(student.avg);
+				$('#grade').val(student.grade);
+				
+			});
+		});
+	</script>
+</head>
+<body>
+    <h1><span id="stuIrum"></span>의 성적 데이터</h1>
+    <form method="POST" action="update.jsp">
+        <ul style="list-style-type:none">
+            <li>학번 : <input type="text" name="hakbun" id="hakbun" readonly/></li>
+            <li>이름 : <input type="text" name="irum" id="irum" readonly/></li>
+            <li>국어 : <input type="number" name="kor" id="kor"/></li>
+            <li>영어 : <input type="number" name="eng" id="eng" /></li>
+            <li>수학 : <input type="number" name="mat"  id="mat"/></li>
+            <li>전산 : <input type="number" name="edp"  id="edp"/></li>
+            <li>총점 : <input type="number" name="sum"  id="sum" readonly/></li>
+            <li>평균 : <input type="number" name="avg"  id="avg" readonly/></li>
+            <li>학점 : <input type="text" name="grade"  id="grade" readonly/></li>
+            
+        </ul>
+        <input type="submit" value="수정하기" />&nbsp;&nbsp;
+         <input type="button" value="목록으로" onclick="javascript:history.back()"/>&nbsp;&nbsp;
+          <input type="button" value="삭제하기" id="btnDelete"/>
+    </form>
+</body>
+</html>

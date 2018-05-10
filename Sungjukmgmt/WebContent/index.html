@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>성적 관리 프로그램</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			$.get("index2.jsp", function(data){
+				var obj = JSON.parse(data);
+				//alert(obj.code);
+				var students=obj.data;
+				$('#count').text(students.length);
+				var str="";
+				for(var i=0; i<students.length;i++){
+					str+="<tr>";
+					for(key in students[i]){
+						if(key=='sum')break;
+						if(key=='hakbun'){
+							str+="<td><a href='detail.html?hakbun=" + students[i][key] + "'>" + students[i][key] + "</a></td>"
+						}else{
+						str+="<td>"+students[i][key]+"</td>";
+						}
+						
+					}str+="</tr>";
+				}
+				$('#result').html(str);
+			});
+		});
+	</script>
+	</head>
+	<body>
+		<h1 class="text-conter">Bit High School Students List</h1>
+		<table class="table">
+			<tr>
+				<td>[<a href="input.html">새로 입력</a>]</td>
+				<td class="text-right">[<span id="count"></span>명 입력]</td>
+			</tr>
+		</table>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>학번</th><th>이름</th><th>국어</th>
+					<th>영어</th><th>수학</th><th>전산</th>
+				</tr>
+			</thead>
+			<tbody id="result">
+			</tbody>
+		</table>
+	</body>
+</html>

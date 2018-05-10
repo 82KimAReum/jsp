@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="Student">
+	
+	<resultMap type="StudentVO" id="selectMap">
+		<result property="hakbun" column="hakbun"/>
+		<result property="irum" column="irum"/>
+		<result property="kor" column="kor"/>
+		<result property="eng" column="eng"/>
+		<result property="mat" column="mat"/>
+		<result property="edp" column="edp"/>
+		<result property="sum" column="sum"/>
+		<result property="avg" column="avg"/>
+		<result property="grade" column="grade"/>
+	</resultMap> 
+	
+	<select id="selectAll" resultMap="selectMap">
+		SELECT * FROM Student ORDER BY sum DESC
+	</select>
+	<parameterMap type="hashMap" id="selectAllMap">
+		<parameter property="results" javaType="ResultSet" jdbcType="CURSOR" mode="OUT" resultMap="selectMap"/>
+	</parameterMap>
+	<select id="selectAllSP" statementType="CALLABLE" parameterMap="selectAllMap">
+	{ call sp_student_select_all(?)}
+	</select>
+	
+	<select id="selectOne" parameterType="String" resultType="StudentVO">
+		SELECT * FROM Student WHERE hakbun = #{hakbun}
+	</select>
+	<parameterMap type="hashMap" id="selectOneMap">
+		<parameter property="hakbun" javaType="String" jdbcType="CHAR" mode="IN"/>
+		<parameter property="resultset" javaType="ResultSet" jdbcType="CURSOR" mode="OUT" resultMap="selectMap"/>
+	</parameterMap>
+	<select id="selectOneSP" parameterMap="selectOneMap" statementType="CALLABLE">
+		{ call sp_student_select_one(?,?)}
+	</select>
+	
+	
+	<insert id="insert" parameterType="StudentVO">
+		INSERT INTO Student(hakbun,irum,kor,eng,mat,edp,sum,avg,grade) 
+		VALUES(#{hakbun}, #{irum}, #{kor}, #{eng},#{mat},#{edp},#{sum},#{avg},#{grade})
+	</insert>
+	
+	<parameterMap type="StudentVO" id="insertParamMap">
+		<parameter property="hakbun" javaType="java.lang.String" jdbcType="CHAR" mode="IN"/>
+		<parameter property="irum" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="kor" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+		<parameter property="eng" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+		<parameter property="mat" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+		<parameter property="edp" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+		<parameter property="sum" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+		<parameter property="avg" javaType="java.lang.Double" jdbcType="DOUBLE" mode="IN"/>
+		<parameter property="grade" javaType="java.lang.Character" jdbcType="CHAR" mode="IN"/>
+	</parameterMap>
+	
+	<insert id="insertSP" parameterMap="insertParamMap">
+		{ call sp_student_insert(?,?,?,?,?,?,?,?,?)}
+	</insert>
+	
+	
+	<update id="update" parameterType="StudentVO">
+		UPDATE Student SET kor=#{kor}, eng=#{eng}, mat=#{mat}, edp=#{edp},
+		sum=#{sum},avg=#{avg},grade=#{grade}
+		WHERE hakbun = #{hakbun} 
+	</update>
+	<parameterMap type="StudentVO" id="updateParamMap">
+		<parameter property="hakbun" javaType="java.lang.String" jdbcType="CHAR" mode="IN"/>
+		
+		<parameter property="kor" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+		<parameter property="eng" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+		<parameter property="mat" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+		<parameter property="edp" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+		<parameter property="sum" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+		<parameter property="avg" javaType="java.lang.Double" jdbcType="DOUBLE" mode="IN"/>
+		<parameter property="grade" javaType="java.lang.Character" jdbcType="CHAR" mode="IN"/>
+	</parameterMap>
+	<update id="updateSP" parameterType="StudentVO">
+		{ call sp_student_update(#{kor}, #{eng},#{mat},#{edp},#{sum},#{avg},#{grade},#{hakbun})}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		DELETE FROM Student WHERE hakbun = #{hakbun}
+	</delete>
+	
+	<parameterMap type="String" id="delParamMap">
+		<parameter property="hakbun" 
+		                 javaType="java.lang.String" mode="IN" jdbcType="CHAR"/>
+	</parameterMap>
+	
+	<delete id="deleteSP" parameterType="String" parameterMap="delParamMap">
+		{ call sp_student_delete(?)}
+	</delete>
+	
+</mapper>
