@@ -15,7 +15,7 @@ IDE:eclipse-jee-oxygen
 
 
 ## customtagdemo4.jsp<br/>
-mytatis-3.4.5.jar과 mysql-connector-java-5.1.46.jar 이용한 db연결<br/>
+mytatis-3.4.5.jar로  mysql 5.1에 연결 <br/>
 jstl.jar&standard.jar ->JSTL<br/>
 
 
