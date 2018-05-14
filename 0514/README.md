@@ -1,7 +1,7 @@
 <pre>
 <code>
-cd /etc/yum.repos.d \<br/>
-vi CentOs~repo <br/>
+cd /etc/yum.repos.d 
+vi CentOs~repo 
 <br/>
 scentOS<br/>
 firewall configuration -Trusted Services<br/>
