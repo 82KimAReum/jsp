@@ -1,6 +1,6 @@
 <pre>
 <code>
-cd /etc/yum.repos.d <br/>
+cd /etc/yum.repos.d \<br/>
 vi CentOs~repo <br/>
 <br/>
 scentOS<br/>
