@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>글 쓰기 창</title>
+    	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    
+</head>
+<body>
+    <h1>글 쓰기 창</h1>
+    <form method="POST" action="write.jsp" enctype="multipart/form-data">
+        <ul style="list-style-type:none">
+            <li>작성자 : <input type="text" name="name" /></li>
+            <li>이메일 : <input type="email" name="email" /></li>
+            <li>제목 : <input type="text" name="title" size="40" /></li>
+            <li>파일첨부 : <input type="file" name="filename" /></li>
+            <li>내용 : <textarea name="contents" rows="10" cols="40" ></textarea></li>
+            
+        </ul>
+        <input type="submit" value="글 쓰기" />
+    </form>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>답글하기</title>
+</head>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		//"reply.html?idx="+ idx;
+		var idx=location.search.substring(1).split("=")[1];		
+		$.get("view.jsp",{idx:idx},function(data){
+			var data=data.data;
+			var grp=data.grp;
+			var lev=data.lev;
+			var step=data.step;
+			$('#grp').val(grp);
+			$('#lev').val(lev);
+			$('#step').val(step);
+			
+			var title="Re:"+data.title;
+			$('#title').val(title);
+			var contents="\r\n\r\n\r\n\r\n\r\n\r\n\r\n----------------------------------------------"+
+						"\r\n"+data.contents;
+			$('#contents').val(contents);
+		})
+	})
+</script>
+<body>
+	<h1>답글 쓰기 창</h1>
+    <form method="POST" action="reply.jsp" enctype="multipart/form-data">
+    <input type="hidden" id="grp" name="grp"/>
+    <input type="hidden" id="lev" name="lev"/>
+    <input type="hidden" id="step" name="step"/>
+    
+        <ul style="list-style-type:none">
+            <li>작성자 : <input type="text" name="name" /></li>
+            <li>이메일 : <input type="email" name="email" /></li>
+            <li>제목 : <input type="text" name="title" size="40" id="title" /></li>
+            <li>파일첨부 : <input type="file" name="filename" /></li>
+            <li>내용 : <textarea name="contents" rows="10" cols="40" id="contents"></textarea></li>
+            
+        </ul>
+        <button type="submit" class="btn btn-primary">답글 쓰기</button>
+        <button type="button" class="btn btn-success"  onclick="javascript:history.back();">취소 하기</button>
+       
+        
+    </form>
+</body>
+</html>

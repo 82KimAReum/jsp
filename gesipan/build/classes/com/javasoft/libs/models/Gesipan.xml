@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="Gesipan">
+	<resultMap type="GesipanVO" id="gesipanMap">
+		<result column="idx" property="idx"/>
+		<result column="name" property="name"/>
+		<result column="email" property="email"/>
+		<result column="title" property="title"/>
+		<result column="contents" property="contents"/>
+		<result column="writedate" property="writedate"/>
+		<result column="readcount" property="readcount"/>
+		<result column="filename" property="filename"/>
+		<result column="grp" property="grp"/>
+		<result column="lev" property="lev"/>
+		<result column="step" property="step"/>
+	</resultMap>
+	
+	<parameterMap type="hashMap" id="paramGesipanMap">
+		<parameter property="results" mode="OUT" javaType="ResultSet" jdbcType="CURSOR" resultMap="gesipanMap"/>
+	</parameterMap>	
+	<select id="selectAll" parameterMap="paramGesipanMap" statementType="CALLABLE">
+		{ call sp_select_all(?) }
+	</select>
+	
+	<parameterMap type="hashMap" id="paramGesipanOneMap">
+		<parameter property="idx" javaType="int" jdbcType="INTEGER" mode="IN"/>
+		<parameter property="results" javaType="ResultSet" jdbcType="CURSOR" mode="OUT" resultMap="gesipanMap"/>
+	</parameterMap>	
+	<select id="selectOne" parameterMap="paramGesipanOneMap" statementType="CALLABLE">
+		{ call sp_select_one (?, ?) }
+	</select>
+	
+	<parameterMap type="hashMap" id="paramCount">
+		<parameter property="result" javaType="int" jdbcType="INTEGER" mode="OUT"/>
+	</parameterMap>
+	<select id="selectCount" parameterMap="paramCount" statementType="CALLABLE">
+		{ call sp_select_count(?)}
+	</select>
+	
+	<parameterMap type="hashMap" id="paramFilename">
+		<parameter property="idx" javaType="int" jdbcType="INTEGER" mode="IN"/>
+		<parameter property="filename" javaType="String" jdbcType="VARCHAR" mode="OUT"/>
+	</parameterMap>
+	<select id="selectFilename" parameterMap="paramFilename" statementType="CALLABLE">
+		{ call sp_select_filename(?,?) }
+	</select>
+	
+	
+	<parameterMap type="GesipanVO" id="paramGesipanInsertMap">
+		<parameter property="name" mode="IN" javaType="String" jdbcType="VARCHAR" />
+		<parameter property="email" mode="IN" javaType="String" jdbcType="VARCHAR" />
+		<parameter property="title" mode="IN" javaType="String" jdbcType="VARCHAR"/>
+		<parameter property="contents" mode="IN" javaType="String" jdbcType="LONGVARCHAR"/>
+		<parameter property="filename" mode="IN" javaType="String" jdbcType="VARCHAR"/>
+	</parameterMap>	
+	<insert id="insert" parameterMap="paramGesipanInsertMap" statementType="CALLABLE">
+		{ call sp_gesipan_insert(?, ?, ?, ?, ?) }
+	</insert>
+	
+	<parameterMap type="GesipanVO" id="paramReplyInsertMap">
+		<parameter property="name" mode="IN" javaType="String" jdbcType="VARCHAR" />
+		<parameter property="email" mode="IN" javaType="String" jdbcType="VARCHAR" />
+		<parameter property="title" mode="IN" javaType="String" jdbcType="VARCHAR"/>
+		<parameter property="contents" mode="IN" javaType="String" jdbcType="LONGVARCHAR"/>
+		<parameter property="filename" mode="IN" javaType="String" jdbcType="VARCHAR"/>
+		<parameter property="grp" mode="IN" javaType="int" jdbcType="INTEGER"/>
+		<parameter property="lev" mode="IN" javaType="int" jdbcType="INTEGER"/>
+		<parameter property="step" mode="IN" javaType="int" jdbcType="INTEGER"/>
+	</parameterMap>		
+	<insert id="replyInsert" parameterMap="paramReplyInsertMap" statementType="CALLABLE">
+		{ call sp_gesipan_reply_insert(?, ?, ?, ?, ?, ?, ?, ?) }
+	</insert>
+	
+	<update id="readcountUpdate" parameterType = "int">
+		{ call sp_readcount_update(#{idx}) }
+	</update>
+	
+	<update id="replyUpdate" parameterType="hashMap">
+		{ call sp_replyupdate(#{grp}, #{step}) }
+	</update>
+	
+</mapper>
+
+
+
+
+

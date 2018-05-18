@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>게시판 목록</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			//index.html?page=3
+			var page = null;
+			if(location.search == "") page = 1;
+			else page = location.search.substring(1).split("=")[1];
+			var url = "list.jsp?page=" + page;
+			$.get(url, function(data){
+				var gesipans = data.data;
+				var pagecount = data.pagecount;
+				$('#count').text(gesipans.length);
+				var str = "";
+				for(var i = 0 ; i < gesipans.length ; i++){
+					var email = gesipans[i].email;
+					var name = gesipans[i].name;
+					var idx = gesipans[i].idx;
+					var extension = gesipans[i].extension;
+					if(extension == null) extension = "&nbsp;";
+					else extension = "<img src='images/" + extension + ".png' width='20' height='20' />";
+					str += "<tr>";
+					var grp = null;
+					var title = gesipans[i].title;
+					if(gesipans[i].lev > 0){
+						grp = "&nbsp;";  
+						title = "<img src='images/reply.jpg' width='20' height='20' />" + title;
+					}
+					else grp = gesipans[i].grp;
+					for(var j = 0 ; j < gesipans[i].lev ; j++){
+						title = "&nbsp;&nbsp;&nbsp;" + title; 
+					}
+					str += "<td>" + grp + "</td>" +
+								"<td><a href='sendmail.jsp?name=" + name +
+								"&email=" + email + "'>" + name + "</a></td>" + 
+								"<td>" + extension + "</td>" +
+								"<td><a href='view.html?idx=" + idx + "'>" + title + "</a></td>" +
+								"<td>" + gesipans[i].writedate + "</td>" +
+								"<td>" + gesipans[i].readcount + "</td>";
+					str += "</tr>";
+				}
+				$('#result').html(str);
+				var str = "<<&nbsp;&nbsp;&nbsp;";
+				for(var k = 1 ; k <= pagecount ; k++){
+					if(k == page) str += k + "&nbsp;&nbsp;&nbsp;";
+					else str += "<a href='index.html?page=" + k + "'>" + k + "</a>&nbsp;&nbsp;&nbsp;";
+				}
+				str += ">>";
+				$('#pagecount').html(str);
+			});
+		});
+	</script>
+	</head>
+	<body>
+		<h1 class="text-center">게시판 목록</h1>
+		<table class="table">
+			<tr>
+				<td>[<a href="write.html">글쓰기</a>]</td>
+				<td class="text-right">글 갯수 : [<span id="count"></span>]</td>
+			</tr>
+		</table>
+		<table class="table table-hover">
+			<thead>
+				<tr class="success">
+					<th style="width:7%">번호</th><th style="width:10%">작성자</th>
+					<th style="width:7%">파일</th><th style="width:52%">제목</th>
+					<th style="width:15%">작성날짜</th><th style="width:9%">조회수</th>
+				</tr>
+			</thead>
+			<tbody id="result">
+			</tbody>
+		</table>
+		<div style="text-align:center" id="pagecount"></div>
+	</body>
+</html>
